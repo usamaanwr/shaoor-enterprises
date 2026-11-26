@@ -16,18 +16,11 @@ export default function Navbar() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
 
-  const isHome = pathname === "/";
-
   return (
     <header className="fixed inset-x-0 top-0 z-50 px-3 sm:px-6 lg:px-10">
-      {" "}
       <nav
         aria-label="Main navigation"
-        className={`mx-auto flex max-w-7xl items-center justify-between rounded-full border px-4 py-3 sm:px-6 ${
-          isHome
-            ? "border-white/20 bg-[#102A43]/85 text-white backdrop-blur-xl shadow-lg"
-            : "border-slate-200 bg-white text-primary shadow-sm"
-        }`}
+        className="mx-auto flex max-w-7xl items-center justify-between rounded-full border border-white/20 bg-[#102A43]/85 px-4 py-3 text-white shadow-lg backdrop-blur-xl sm:px-6"
       >
         {/* Brand Logo */}
         <Link
@@ -59,12 +52,8 @@ export default function Navbar() {
                 href={item.href}
                 className={`rounded-full px-5 py-2.5 text-sm font-medium transition-colors duration-200 ${
                   isActive
-                    ? isHome
-                      ? "bg-white text-primary"
-                      : "bg-primary text-white"
-                    : isHome
-                      ? "text-white hover:bg-white/15"
-                      : "text-primary hover:bg-slate-100"
+                    ? "bg-white text-primary"
+                    : "text-white hover:bg-white/15"
                 }`}
               >
                 {item.label}
@@ -76,11 +65,7 @@ export default function Navbar() {
         {/* Desktop CTA */}
         <Link
           href="/contact"
-          className={`hidden items-center gap-3 rounded-full px-5 py-3 text-sm font-semibold transition-colors duration-200 lg:inline-flex ${
-            isHome
-              ? "bg-white text-primary hover:bg-blue-50"
-              : "bg-primary text-white hover:bg-accent"
-          }`}
+          className="hidden items-center gap-3 rounded-full bg-white px-5 py-3 text-sm font-semibold text-primary transition-colors duration-200 hover:bg-blue-50 lg:inline-flex"
         >
           Get a Quote
           <ArrowUpRight size={17} />
@@ -93,13 +78,12 @@ export default function Navbar() {
           aria-expanded={isOpen}
           aria-controls="mobile-navigation"
           onClick={() => setIsOpen(!isOpen)}
-          className={`flex h-10 w-10 items-center justify-center rounded-full lg:hidden ${
-            isHome ? "bg-white text-primary" : "bg-primary text-white"
-          }`}
+          className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-primary lg:hidden"
         >
           {isOpen ? <X size={22} /> : <Menu size={22} />}
         </button>
       </nav>
+
       {/* Mobile Navigation */}
       {isOpen && (
         <div
